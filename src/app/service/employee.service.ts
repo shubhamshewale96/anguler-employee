@@ -10,4 +10,7 @@ export class EmployeeService {
   public getEmpDetails(){
     return this.httpClient.get(`${this.apiUrl}/home/greet`);
   }
+  public getAllEmp(){
+    return this.httpClient.get(`${this.apiUrl}/get`);
+  }
 }

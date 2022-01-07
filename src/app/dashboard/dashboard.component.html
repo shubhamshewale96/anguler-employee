@@ -1,41 +1,48 @@
-<!-- <div class="button-container">
-    <button mat-raised-button (click)="addData()" class="button">
-      Add Employee
-    </button>
-</div> -->
-  
-  <table mat-table class="table">
+<div class="main-content">
+  <div class="header-content">
+      <div class="emp-detail-text">
+          <div class="search-box-background">
+              <div class="box">
+                  <img src="../../assets/icons/search-30.png" alt="Search Box">
+                </div>
+          </div>
+          Employee Details
+      </div>
+      <a class="add-button" Link="">
+          <img src="../../assets/icons/add-24px.svg">
+          Add User
+      </a>
+  </div>
+    <div class="table-main">
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
-      <td mat-cell *matCellDef="let element">{{element.name}}</td>
-    </ng-container>
-  
-    <!-- Gender Column -->
-    <ng-container matColumnDef="gender">
-      <th mat-header-cell *matHeaderCellDef>Gender</th>
-      <td mat-cell *matCellDef="let element">{{element.weight}}</td>
-    </ng-container>
-  
-    <!-- department Column -->
-    <ng-container matColumnDef="department">
-      <th mat-header-cell *matHeaderCellDef>Department</th>
-      <td mat-cell *matCellDef="let element">{{element.symbol}}</td>
-    </ng-container>
-
-    <!-- Salary Column -->
-    <ng-container matColumnDef="salary">
-        <th mat-header-cell *matHeaderCellDef>Salary</th>
-        <td mat-cell *matCellDef="let element">{{element.position}}</td>
-      </ng-container>
-     
-     <!-- start date Column -->
-     <ng-container matColumnDef="startdate">
-        <th mat-header-cell *matHeaderCellDef>Start Date</th>
-        <td mat-cell *matCellDef="let element">{{element.position}}</td>
-      </ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+      <table id="display" class="table">
+          <tr style=" background: #112538 0% 0% no-repeat padding-box;;">
+              <th></th>
+              <th style="color: #ffffff">Name</th>
+              <th style="color: #ffffff">Gender</th>
+              <th style="color: #ffffff">Department</th>
+              <th style="color: #ffffff">Salary</th>
+              <th style="color: #ffffff">Start Date</th>
+              <th style="color: #ffffff">Actions</th>
+          </tr>
+          <!-- printing first row from database -->
+          <tr *ngFor="let empItem of empList">
+          <td>
+              <img class="profile" src="../../assets/profile-images/Ellipse -2.png">
+            </td>
+          <td>{{empItem.name}}</td>
+          <td>{{empItem.gender}}</td>
+          <td>
+              <div class="dept-label">Engineer</div>
+              <div class="dept-label">Others</div>
+          </td>
+          <td>{{empItem.salary}}</td>
+          <td>{{empItem.startDate}}</td>
+          <td>
+              <img alt="delete" src="../../assets/icons/delete-black-18dp.svg">
+              <img alt="edit" src="../../assets/icons/create-black-18dp.svg">
+          </td>
+          </tr>
+     </table>
+  </div>
+</div>
