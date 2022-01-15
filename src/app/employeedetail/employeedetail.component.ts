@@ -10,12 +10,12 @@ export class EmployeedetailComponent implements OnInit {
   constructor(private apiService: EmployeeService) { }
 
   ngOnInit(): void {
-    this.getEmpDetail();
+    // this.getEmpDetail();
   }
-  getEmpDetail(){
-    this.apiService.getEmpDetails().subscribe((data)=>{
-      console.log(data);
+  // getEmpDetail(){
+  //   this.apiService.getEmpDetails().subscribe((data)=>{
+  //     console.log(data);
       
-    });
-  }
+  //   });
+  // }
 }

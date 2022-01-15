@@ -1,29 +1,29 @@
 <app-header></app-header>
 <div class="form-content">
-    <form class="form" #addEmpForm="ngForm" (ngSubmit)="addNewEmp(addEmpForm)">
+    <form  class="form"  >
         <div class="form-head ">Employee Payroll Form</div>
         <div class="row-content ">
-            <label for="name "  class="label text ">Full Name</label>
-            <input type="text "  name="name " id="name " class="input " placeholder="Your Name ... "required ngModel>
+            <label for="name "  class="label text ">Name</label>
+            <input type="text "  name="name " id="name " class="input " placeholder="Your Name ... "required [(ngModel)]="employee.name" [ngModelOptions]="{standalone: true}">
         </div>
 
         <div class="row-content">
             <label class="label text" for="profile">Profile Image</label>
             <div class="profile-radio-content">
                 <label>
-                    <input type="radio" id="profile1" name="profile" value="../assets/profile-images/Ellipse -1.png" required ngModel>
+                    <input type="radio" id="profile1" name="profile" value="../assets/profile-images/Ellipse -1.png" required [(ngModel)]="employee.profilepic">
                     <img class="profile" id="image1" src="../assets/profile-images/Ellipse -1.png">
                 </label>
                 <label>
-                    <input type="radio" id="profile2" name="profile" value="../assets/profile-images/Ellipse -2.png" required ngModel>
+                    <input type="radio" id="profile2" name="profile" value="../assets/profile-images/Ellipse -2.png" required  [(ngModel)]="employee.profilepic">
                     <img class="profile" id="image2" src="../assets/profile-images/Ellipse -2.png">
                 </label>
                 <label>
-                    <input type="radio" id="profile3" name="profile" value="../assets/profile-images/Ellipse -3.png" required ngModel>
+                    <input type="radio" id="profile3" name="profile" value="../assets/profile-images/Ellipse -3.png" required  [(ngModel)]="employee.profilepic">
                     <img class="profile" id="image3" src="../assets/profile-images/Ellipse -3.png">
                 </label>
                 <label>
-                    <input type="radio" id="profile4" name="profile" value="../assets/profile-images/Ellipse -4.png" required ngModel>
+                    <input type="radio" id="profile4" name="profile" value="../assets/profile-images/Ellipse -4.png" required  [(ngModel)]="employee.profilepic">
                     <img class="profile" id="image4" src="../assets/profile-images/Ellipse -4.png">
                 </label>
             </div>
@@ -31,38 +31,53 @@
         <div class="row-content">
             <label class="label text" for="gender">Gender</label>
             <div>
-                <input type="radio" id="male" name="gender" value="Male" ngModel>
+                <input type="radio" id="male" name="gender" value="male" [(ngModel)]="employee.gender" [ngModelOptions]="{standalone: true}">
                 <label class="text" for="male">Male</label>
-                <input type="radio" id="female" name="gender" value="Female" ngModel>
+                <input type="radio" id="female" name="gender" value="female" [(ngModel)]="employee.gender" [ngModelOptions]="{standalone: true}">
                 <label class="text" for="female">Female</label>
             </div>
         </div>
 
         <div class="row-content">
-            <label class="label text" for="department">Department</label>
-            <div>
-                <input class="checkbox" type="checkbox" id="hr" name="department" value="HR" ngModel>
-                <label class="text" for="hr">HR</label>
-                <input class="checkbox" type="checkbox" id="sales" name="department" value="Sales" ngModel>
-                <label class="text" for="sales">Sales</label>
-                <input class="checkbox" type="checkbox" id="finance" name="department" value="Finance" ngModel>
-                <label class="text" for="finance">Finance</label>
-                <input class="checkbox" type="checkbox" id="engineer" name="department" value="Engineer" ngModel>
-                <label class="text" for="engineer">Engineer</label>
-                <input class="checkbox" type="checkbox" id="others" name="department" value="Others" ngModel>
-                <label class="text" for="others">Others</label>
-            </div>
-        </div>
+            <label for="department" class="label text">Department</label>
+            <div *ngFor="let item of departments">
+                    <input type="checkbox" class="checkbox" id="{{item.id}}" name="{{item.name}}" [value]="item.value"  [checked]="item.select" (change)="onChangeDept($event)" >
+                    <label for="{{item.id}}" class="text">{{item.value}} </label> 
+            </div> 
+        </div>          
+        
 
         <div class="row-content">
+            <label for="salary" class="label text">Salary</label>
+            <div >  
+                <select class="salary" name="Salary" id="salary" [(ngModel)]="employee.salary">
+                    <option value="10000">10000</option>
+                    <option value="20000">20000</option>
+                    <option value="25000">25000</option>
+                    <option value="30000">30000</option>
+                </select>
+            </div>
+         </div>
+
+        <!-- <div class="row-content">
             <label class="label text" for="salary">Choose Your Salary: </label>
-            <input class="input" type="range" name="salary" id="salary" min="300000" max="500000" step="100" value="400000" ngModel>
-            <output class="salary-output" for="salary">400000</output>
-        </div>
-        <div class="row-content">
+
+            <input class="input" type="range" value="40000" min="10000" max="80000" oninput="this.nextElementSibling.value = this.value" [(ngModel)]="employee.salary"[ngModelOptions]="{standalone: true}">
+            <output class="salary-output">40000</output> -->
+
+            <!-- <input class="input" type="range" name="salary" id="myRange" min="300000" max="500000" step="100" value="400000" [(ngModel)]="employee.salary"[ngModelOptions]="{standalone: true}">
+            <output class="salary-output" ><span id="demo"></span>40000</output> 
+            
+        </div>-->
+
+        <!-- <div class="row-content">
             <label class="label text" for="startDate">Start Date</label>
-            <div>
-                <select id="day" name="Day" ngModel>
+            <input type="text" name="startDate" [(ngModel)]="employee.startDate" [ngModelOptions]="{standalone: true}">
+        </div> -->
+        <div class="row-content">
+            <label for="startDate" class="label text">Start Date</label>
+            <div  >
+                <select class="startdate" name="Day" id="day" [(ngModel)]="day">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -95,39 +110,42 @@
                     <option value="30">30</option>
                     <option value="31">31</option>
                 </select>
-                <select id="month" name="Month" ngModel>
-                    <option value="Jan">January</option>
-                    <option value="Feb">February</option>
-                    <option value="March">March</option>
-                    <option value="April">April</option>
-                    <option value="May">May</option>
-                    <option value="June">June</option>
-                    <option value="July">July</option>
-                    <option value="Aug">August</option>
-                    <option value="Sept">September</option>
-                    <option value="Oct">October</option>
-                    <option value="Nov">November</option>
-                    <option value="Dec">December</option>
+
+                <select  class="startdate" name="Month" id="month" [(ngModel)]="month">
+                    <option value="01">January</option>
+                    <option value="02">February</option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
                 </select>
-                <select id="year" name="Year" ngModel>
+
+                <select class="startdate" name="Year" id="year" [(ngModel)]="year">
                     <option value="2022">2022</option>
                     <option value="2021">2021</option>
                     <option value="2020">2020</option>
                     <option value="2019">2019</option>
                     <option value="2018">2018</option>
                     <option value="2017">2017</option>
-                    <option value="2016">2016</option>
                 </select>
             </div>
         </div>
+
         <div class="row-content">
-            <label class="label text" for="notes">Notes</label>
-            <textarea id="notes" class="input" name="Notes" placeholder="" style="height:100px"ngModel> </textarea>
-        </div>
+            <label for="notes" class="label text">Notes</label>
+            <textarea name="Notes" id="notes" class="note" style="height: 100px;" [(ngModel)]="employee.note"></textarea>
+        </div>   
+        
         <div class="buttonParent">
             <a class="resetButton button cancelButton" >Cancel</a>
             <div class="submit-reset">
-                <button type="submit"  class="button submitButton" (ngSumbit)="addNewEmp(addEmpForm)" routerLink="/empForm" >Submit</button>
+                <button type="button" (click)="onSubmit()" class="button submitButton" value="submit">Submit</button>
                 <button type="reset" class="resetButton button" >Reset</button>
             </div>
         </div>
